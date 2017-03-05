@@ -1,0 +1,31 @@
+<div class="album text-muted">
+    <div class="container">
+
+        <app-video-player [video]="video" *ngIf="video"></app-video-player>
+        search for: {{searchFor}}
+
+        <form class="form-inline my-2 my-lg-0">
+            <input [(ngModel)]="searchFor" name="searchFor" class="form-control mr-sm-2" type="text" placeholder="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Szukaj</button>
+        </form>
+        <div class="row">
+       <!--  {{videos|json}}  - do pogladu -->
+            <div class="card col-4" *ngFor="let video of videos | async | search: searchFor" >
+            <!-- nawias kwadratowy przypisuje atrybutowi (wszystko z DOMu) zmienna -->
+           
+                <img routerLink="video/{{video.id}}" class="card-img-top" [src]="video.thumb" alt="Card image cap">
+                <div class="card-block">
+                    <h4 class="card-title">{{video.title}}</h4>
+                    <p class="card-text">{{video.description}}</p>
+                    <!-- [value]="video.clicked" -->
+                    <a  (click)="onVideoClick(video)" href="#" class="btn btn-primary">Zobacz</a>
+                </div>
+               
+            </div>
+          
+        </div>
+
+    </div>
+</div>
+
+<template ngbModalContainer></template>

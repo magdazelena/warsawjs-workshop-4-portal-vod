@@ -5,18 +5,38 @@ import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { VideoListComponent } from './components/video-list/video-list.component';
+import { VideoService } from './services/video.service';
+import { VideoPlayerComponent } from './components/video-player/video-player.component';
+import { SafePipe } from './pipes/safe.pipe';
+import { SearchPipe } from './pipes/search.pipe';
+import { VideoDetailsComponent } from './components/video-details/video-details.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavBarComponent,
+    FooterComponent,
+    VideoListComponent,
+    VideoPlayerComponent,
+    SafePipe,
+    SearchPipe,
+    VideoDetailsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    VideoService
+  ],
+  entryComponents: [VideoPlayerComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
